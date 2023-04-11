@@ -1,9 +1,9 @@
-import '../css/style.css';
+import './css/style.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { PixabayApi } from './pixabay-api';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-import renderPhotoCards from '../templates/photo-card.hbs';
+import renderPhotoCards from './templates/photo-card.hbs';
 
 const elements = {
   form: document.querySelector('.js-serch-form'),
