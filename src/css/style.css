@@ -158,6 +158,10 @@ body {
   justify-content: center;
   width: 60px;
   height: 60px;
+
+  transition-property: background-color;
+  transition-duration: 1000ms;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .btn-up::before {
@@ -175,6 +179,6 @@ body {
 
 @media (hover: hover) and (pointer: fine) {
   .btn-up:hover {
-    background-color: #512da8;
+    background-color: hsla(192, 76%, 16%, 0.886);
   }
 }

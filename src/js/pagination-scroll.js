@@ -10,6 +10,7 @@ const elements = {
   form: document.querySelector('.js-serch-form'),
   gallery: document.querySelector('.js-gallery'),
   observer: document.querySelector('.js-observer'),
+  btnUp: document.querySelector('.js-btn-up'),
 }
 
 const pixabayApi = new PixabayApi();
@@ -31,6 +32,7 @@ const options = {
 const observer = new IntersectionObserver(loadMore, options);
 
 const btnUp = new BtnUp(elements.btnUp);
+
 
 elements.form.addEventListener('submit', onSerchImages);
 
