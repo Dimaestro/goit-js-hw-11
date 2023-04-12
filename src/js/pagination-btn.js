@@ -30,13 +30,16 @@ async function onSerchImages(event) {
 
   elements.btnLoad.classList.add('is-hidden');
   elements.gallery.innerHTML = '';
+  
 
   const { elements: { searchQuery } } = event.currentTarget;
   pixabayApi.searchQuery = searchQuery.value;
+  
 
   try {
     const { data: { hits: photoCards, totalHits } } = await pixabayApi.getPhotoCards();
 
+    pixabayApi.page = 1;
     totalPages = Math.floor(totalHits / pixabayApi.per_page);
 
     if (totalHits === 0 || photoCards.length === 0) {

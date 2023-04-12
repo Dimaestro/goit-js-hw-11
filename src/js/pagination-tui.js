@@ -43,9 +43,6 @@ const optionsPagination = {
 const pagination = new Pagination(elements.tuiPagination, optionsPagination);
 pagination.on('beforeMove', loadMore);
 
-
-
-
 const optionsLightbox = {
   captionsData: 'alt',
   captionPosition: 'bottom',

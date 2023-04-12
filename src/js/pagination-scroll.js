@@ -39,9 +39,14 @@ async function onSerchImages(event) {
 
   const { elements: { searchQuery } } = event.currentTarget;
   pixabayApi.searchQuery = searchQuery.value;
+  
+  
 
   try {
+
     const { data: { hits: photoCards, totalHits } } = await pixabayApi.getPhotoCards();
+
+    pixabayApi.page = 1;
 
     totalPages = Math.floor(totalHits / pixabayApi.per_page);
 
@@ -50,16 +55,17 @@ async function onSerchImages(event) {
       return;
     }
 
-    if (totalPages > 1) {
-      setTimeout(() => {
-        observer.observe(elements.observer);
-      }, 500);
-    }
-
     elements.gallery.insertAdjacentHTML('beforeend', renderPhotoCards(photoCards));
     Notify.success(`Hooray! We found ${totalHits} images.`);
 
     lightbox.refresh();
+
+    if (totalPages > 1) {
+      
+      setTimeout(() => {
+        observer.observe(elements.observer);
+      }, 500);
+    }
   
   } catch (error) {
       console.log(error);
@@ -68,8 +74,6 @@ async function onSerchImages(event) {
 }
 
 async function loadMore(entries, observer) {
-  
-  console.log(entries[0].isIntersecting);
 
   if(entries[0].isIntersecting) {
     pixabayApi.page += 1;
