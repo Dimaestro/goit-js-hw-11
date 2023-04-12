@@ -32,7 +32,6 @@ async function onSerchImages(event) {
   elements.btnLoad.classList.add('is-hidden');
   elements.gallery.innerHTML = '';
   
-
   const { elements: { searchQuery } } = event.currentTarget;
   pixabayApi.searchQuery = searchQuery.value;
   
