@@ -4,11 +4,13 @@ import { PixabayApi } from './pixabay-api';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import renderPhotoCards from '../templates/photo-card.hbs';
+import BtnUp from './btnUp';
 
 const elements = {
   form: document.querySelector('.js-serch-form'),
   gallery: document.querySelector('.js-gallery'),
   btnLoad: document.querySelector('.js-btn-load'),
+  btnUp: document.querySelector('.js-btn-up'),
 }
 
 const pixabayApi = new PixabayApi();
@@ -22,6 +24,10 @@ const optionsLightbox = {
 }
 
 let lightbox = new SimpleLightbox('.gallery a', optionsLightbox);
+
+const btnUp = new BtnUp(elements.btnUp);
+console.log(btnUp);
+
 
 elements.form.addEventListener('submit', onSerchImages);
 
@@ -51,6 +57,8 @@ async function onSerchImages(event) {
 
     lightbox.refresh();
 
+    btnUp.addEventListenerBtn();
+    
     if (totalPages > 1) {
       elements.btnLoad.classList.remove('is-hidden');
       elements.btnLoad.addEventListener('click', loadMore);
