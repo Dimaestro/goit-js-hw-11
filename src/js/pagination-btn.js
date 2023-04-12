@@ -28,6 +28,7 @@ elements.form.addEventListener('submit', onSerchImages);
 async function onSerchImages(event) {
   event.preventDefault();
 
+  pixabayApi.page = 1;
   elements.btnLoad.classList.add('is-hidden');
   elements.gallery.innerHTML = '';
   
@@ -39,7 +40,6 @@ async function onSerchImages(event) {
   try {
     const { data: { hits: photoCards, totalHits } } = await pixabayApi.getPhotoCards();
 
-    pixabayApi.page = 1;
     totalPages = Math.floor(totalHits / pixabayApi.per_page);
 
     if (totalHits === 0 || photoCards.length === 0) {
@@ -68,7 +68,7 @@ async function loadMore() {
   
   try {
     const { data: { hits: photoCards } } = await pixabayApi.getPhotoCards();
-
+  
     elements.gallery.insertAdjacentHTML('beforeend', renderPhotoCards(photoCards));
 
     lightbox.refresh();

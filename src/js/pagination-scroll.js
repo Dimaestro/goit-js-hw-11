@@ -29,7 +29,6 @@ const options = {
 }
 const observer = new IntersectionObserver(loadMore, options);
 
-
 elements.form.addEventListener('submit', onSerchImages);
 
 async function onSerchImages(event) {
@@ -45,9 +44,9 @@ async function onSerchImages(event) {
   try {
 
     const { data: { hits: photoCards, totalHits } } = await pixabayApi.getPhotoCards();
-
+    
     pixabayApi.page = 1;
-
+    console.log(pixabayApi.page);
     totalPages = Math.floor(totalHits / pixabayApi.per_page);
 
     if (totalHits === 0 || photoCards.length === 0) {
@@ -61,7 +60,6 @@ async function onSerchImages(event) {
     lightbox.refresh();
 
     if (totalPages > 1) {
-      
       setTimeout(() => {
         observer.observe(elements.observer);
       }, 500);
@@ -80,7 +78,7 @@ async function loadMore(entries, observer) {
 
     try {
       const { data: { hits: photoCards } } = await pixabayApi.getPhotoCards();
-  
+      console.log(pixabayApi.page);
       elements.gallery.insertAdjacentHTML('beforeend', renderPhotoCards(photoCards));
       
       lightbox.refresh();
