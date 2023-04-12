@@ -51,6 +51,7 @@ const optionsLightbox = {
 
 let lightbox = new SimpleLightbox('.gallery a', optionsLightbox);
 
+
 elements.form.addEventListener('submit', onSerchImages);
 
 async function onSerchImages(event) {

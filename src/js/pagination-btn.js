@@ -26,8 +26,6 @@ const optionsLightbox = {
 let lightbox = new SimpleLightbox('.gallery a', optionsLightbox);
 
 const btnUp = new BtnUp(elements.btnUp);
-console.log(btnUp);
-
 
 elements.form.addEventListener('submit', onSerchImages);
 

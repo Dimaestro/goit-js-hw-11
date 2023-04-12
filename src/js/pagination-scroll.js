@@ -4,6 +4,7 @@ import { PixabayApi } from './pixabay-api';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import renderPhotoCards from '../templates/photo-card.hbs';
+import BtnUp from './btnUp';
 
 const elements = {
   form: document.querySelector('.js-serch-form'),
@@ -28,6 +29,8 @@ const options = {
   threshold: 1.0
 }
 const observer = new IntersectionObserver(loadMore, options);
+
+const btnUp = new BtnUp(elements.btnUp);
 
 elements.form.addEventListener('submit', onSerchImages);
 
@@ -59,6 +62,8 @@ async function onSerchImages(event) {
     Notify.success(`Hooray! We found ${totalHits} images.`);
 
     lightbox.refresh();
+
+    btnUp.addEventListenerBtn();
 
     if (totalPages > 1) {
       setTimeout(() => {
