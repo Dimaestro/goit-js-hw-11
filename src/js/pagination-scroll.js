@@ -33,21 +33,22 @@ elements.form.addEventListener('submit', onSerchImages);
 
 async function onSerchImages(event) {
   event.preventDefault();
+  observer.unobserve(elements.observer);
 
   elements.gallery.innerHTML = '';
+  pixabayApi.page = 1;
 
   const { elements: { searchQuery } } = event.currentTarget;
   pixabayApi.searchQuery = searchQuery.value;
-  
   
 
   try {
 
     const { data: { hits: photoCards, totalHits } } = await pixabayApi.getPhotoCards();
-
-    pixabayApi.page = 1;
+    console.log(pixabayApi.page);
     
     totalPages = Math.floor(totalHits / pixabayApi.per_page);
+
 
     if (totalHits === 0 || photoCards.length === 0) {
       Notify.failure('Sorry, there are no images matching your search query. Please try again.');
@@ -78,7 +79,7 @@ async function loadMore(entries, observer) {
 
     try {
       const { data: { hits: photoCards } } = await pixabayApi.getPhotoCards();
-      
+      console.log(pixabayApi.page);
       elements.gallery.insertAdjacentHTML('beforeend', renderPhotoCards(photoCards));
       
       lightbox.refresh();
